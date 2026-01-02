@@ -20,16 +20,8 @@ set_cfg() {
 echo "[*] Backup sshd_config"
 backup
 
-echo "[*] Enabling password auth + root login"
 set_cfg "PasswordAuthentication" "yes"
 set_cfg "PermitRootLogin" "yes"
-set_cfg "PubkeyAuthentication" "yes"
-set_cfg "UsePAM" "yes"
 
 echo "[*] Restarting SSH"
 systemctl restart ssh || systemctl restart sshd
-
-echo "[*] Make sure root has password"
-passwd root
-
-echo "[OK] Done. Password login for root is enabled."
